@@ -39,8 +39,14 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         instace = this;
-        input = new InputHandlerPC(this);
-        //input = new InputHandlerMobile(this);
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            input = new InputHandlerMobile(this);
+        }
+        else
+        {
+            input = new InputHandlerPC(this);
+        }
     }
 
     private void Start()
